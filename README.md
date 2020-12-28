@@ -11,7 +11,7 @@
 
 ------------------
 ## فهرست درس ها 
-- [Theory of Languages and Machines]()
+- [Theory of Languages and Machines](https://github.com/farzadmoomeni/PNU_3991_AR/tree/main/Theory%20of%20Languages%20and%20Machines)
 
 ------------------
 ## گروه های درسی
