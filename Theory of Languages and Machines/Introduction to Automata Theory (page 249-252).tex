@@ -1,0 +1,234 @@
+\documentclass{article}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\linespread{1.35}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+\begin{document}
+
+\begin{flushright}
+ \texttt{Finite Automata} \hspace*{0.1cm}\textbf{$|$} \hspace*{0.1cm} \textbf{249}\hspace*{0.1cm}
+\end{flushright}
+\vspace*{0.5cm}
+
+As $\delta'$ is constructed for all inputs on B, B is marked.\\
+C is unmarked still.\\
+Then, construct the $\delta'$ function for the new unmarked state C for inputs 'a' and 'b'.\\
+\begin{center}
+ $\delta'(C, a) = \varepsilon-closure(\delta (C, a))$ \\
+\hspace*{1.7cm} =$ \varepsilon-closure (\delta((q_1, q_3), a))$ \\
+\hspace*{2.7cm} =$ \varepsilon-closure (\delta(q_1, a) \cup \delta(q_3, a)))$ \\
+\hspace*{1.7cm} =$ \varepsilon-closure (\{q_2\} \cup \{\Phi\})$ \\
+\hspace*{1.7cm} =$ \varepsilon-closure(q_2) = {q_2} = D$ \\
+\end{center}
+
+\vspace*{0.5cm}
+\begin{center}
+ $\delta'(C, b) = \varepsilon-closure(\delta (C, b))$ \\
+  \hspace*{2cm} =$ \varepsilon-closure (\delta((q_1, q_3), b))$ \\
+  \hspace*{3cm} =$ \varepsilon-closure (\delta(q_1, b) \cup \delta(q_3, b)))$ \\
+  \hspace*{1.5cm} =$ \varepsilon-closure ({q_3} \cup \{\Phi\})$ \\
+  \hspace*{2.3cm} =$ \varepsilon-closure(q_3) = {q_1, q_3} = C$ \\
+\end{center}
+
+
+As $\delta'$ is constructed for all inputs on C, C is marked.\\
+D is unmarked still.\\
+Then, construct the $\delta'$ function for the new unmarked state D for inputs 'a' and 'b'.\\
+
+\begin{center}
+ \hspace*{1.7cm}  $\delta'(D, a) = \varepsilon-closure(\delta (D, a))$ \\
+\hspace*{3cm} = $\varepsilon-closure (\delta((q_2), a))$ \\
+\hspace*{2.5cm} = $\varepsilon-closure (\delta(q_2, a))$ \\
+\hspace*{2.3cm} = $\varepsilon-closure (\{\Phi\})$ \\
+= $\Phi$ \\
+
+
+$\delta'(D, b) = \varepsilon-closure(\delta (D, b))$ \\
+\hspace*{1.5cm} $= \varepsilon-closure (\delta((q_2), b))$ \\
+\hspace*{1cm} $= \varepsilon-closure (\delta(q_2, b))$ \\
+\hspace*{0.5cm} $= \varepsilon-closure (\{q_3\})$ \\
+$= \{q_1, q_3\} = C$ \\
+\end{center}
+States A and C are final states as the states contain $q_3$.\\
+
+The equivalent DFA is given in Fig. 5.21\\
+\begin{center}
+\section{picture}
+\includegraphics[width=5cm,height=3cm]{249.png}
+\end{center}
+
+
+\large{
+\textbf{5.7 Equivalence of Two Finite Automata}
+}
+
+\vspace*{0.3cm}
+\small{Two FA are said to be equivalent if they generate the same (equivalent) RE. If both the FA are minimized,
+they reveal the equivalence by being minimized to the same number of states and the same transitional
+functions. In this section, we shall discuss the process of proving the equivalence between two FA.\\}
+
+\newpage
+\begin{flushleft}
+    \textbf{250}\hspace*{0.1cm} \textbf{$|$} \hspace*{0.1cm} \texttt{Introduction to Automata Theory, Formal Languages and Computation}
+  \end{flushleft}
+
+  \vspace*{0.5cm}
+ Let there be two FA, M and $M'$, where the number of input symbols are the same.\\
+ \small{
+  \begin{itemize}
+    \item Make a comparison table with $n + 1$ columns, where n is the number of input symbols.\\
+    \item In the first column, there will be a pair of vertices $(q, q')$ where $q \in M$ and $q' \in M'$ . The first pair
+of vertices will be the initial states of the two machines M and $M'$. The second column consists of
+$(q_a, q'_a)$, where $q_a$ is reachable from the initial state of the machine M for the first input, and $q'_a$ is
+reachable from the initial state of the machine $M'$ for the first input. The other $n - 2$ columns consist
+of a pair of vertices from M and $M'$ for $n - 1$ inputs, where $n$ = $2, 3,...... n - 1$.\\
+
+  \end{itemize}
+}
+
+\small{
+\begin{itemize}
+  \item If any new pair of states appear in any of the $n - 1$ next state columns, which were not taken in the
+first column, take that pair in the present state column and construct subsequent column elements
+like the first row.\\
+  \item If a pair of states $(q,q')$ appear in any of the n columns for a pair of states in the present state column,
+where q is the final state of M and $q'$ is the non-final state of $M'$ or vice versa, terminate the
+construction and conclude that M and $M'$ are not equivalent.\\
+  \item If no new pair of states appear, which were not taken in the first column, stop the construction and
+declare that M and $M'$ are equivalent.\\
+\end{itemize}
+}
+
+\vspace*{0.2cm}
+The following examples describe this in detail.\\
+
+\begin{center}
+  \section{picture}
+\includegraphics[width=11cm,height=7cm]{250.png}
+\end{center}
+
+
+\textbf{Solution:}  In the previous two DFAs, the number of input is two 0 and 1. Therefore, the comparison
+table is of three columns. The beginning state pair is (A, G). From there, for input 0, we are getting
+(B, H) and for input 1 we are getting (C, H). Both of them are new combination of states. Among them,
+first take (B, H) in the present state column. The next state pairs for input 0 and 1 are constructed. By
+this process, the comparison continues.\\
+\hspace*{0.5cm} After the fifth step, further construction is stopped as no new state combinations have appeared. In
+the whole table, no such type of combination of states appear where one state is the final state of one
+machine and the other is the non-final state of another machine.\\
+
+\newpage
+\begin{flushright}
+ \texttt{Regular Expression} \hspace*{0.1cm}\textbf{$|$} \hspace*{0.1cm} \textbf{251}\hspace*{0.1cm}
+\end{flushright}
+\vspace*{0.5cm}
+
+Therefore, the two DFAs are equivalent.\\
+
+\begin{center}
+\begin{tabular}{ccc}
+ \hline
+
+ \hline
+
+ \hline
+
+ \hline
+ & \multicolumn{2}{c}{$Next State$}\\
+ \cline{2-3}
+ $Present State (q, q')$ &  $For I/P 0 (q_0, q'_0)$ & $For I/P 1 (q_1, q'_1)$\\
+\hline
+(A, G) & (B, H) & (C, H)\\
+(B, H) & (C, H) & (D, I)\\
+(C, H) & (C, H) & (E, I)\\
+(E, I) & (E, I) & (E, I)\\
+(D, I) & (D, I) & (D, I)\\
+ \hline
+
+ \hline
+
+ \hline
+
+ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+  \section{picture}
+\includegraphics[width=11cm,height=7cm]{251.png}
+\end{center}
+
+\textbf{Solution:} In the previous two DFAs, the number of input is two 0 and 1. Therefore, the comparison
+table is of three columns. The beginning state pair is (A, E). From there, for input 0, we get $(B, F)$ and
+for input 1 we get $(D, H)$. Both of them are new combination of states. Among them, take $(B, F)$ in the
+present state column. The next state pairs for input 0 is $(C, G)$ and for input 1 is $(C, H)$. $(C,,H)$ is a combination
+of states where C is the final state of M and H is the non-final state of $M'$. Further construction
+stops here declaring that the two DFAs are not equivalent.\\
+
+\newpage
+\begin{flushleft}
+    \textbf{252}\hspace*{0.1cm} \textbf{$|$} \hspace*{0.1cm} \texttt{Introduction to Automata Theory, Formal Languages and Computation}
+  \end{flushleft}
+
+  \vspace*{0.5cm}
+  \begin{center}
+\begin{tabular}{ccc}
+ \hline
+
+ \hline
+
+ \hline
+
+ \hline
+ & \multicolumn{2}{c}{$Next State$}\\
+ \cline{2-3}
+ $Present State (q, q')$ &  $For I/P 0 (q_0, q'_0)$ & $For I/P 1 (q_1, q'_1)$\\
+\hline
+(A, E) & (B, F) & (D, H)\\
+(B, F) & (C, G) & (C, H)\\
+ \hline
+
+ \hline
+
+ \hline
+
+ \hline
+\end{tabular}
+\end{center}
+
+\vspace*{0.4cm}
+
+\large{
+\textbf{5.8 Equivalence of Two Regular Expressions}
+}
+
+\vspace*{0.1cm}
+\small{ For every RE, there is an accepting FA. If the FA constructed from both of the REs are the same, then
+we can say that two REs are equivalent.}\\
+
+\begin{flushleft}
+  \section{picture}
+\includegraphics[width=10cm,height=0.7cm]{252-1.png}
+\end{flushleft}
+
+\begin{center}
+$L_1 = (a + b)* L_2 = a*(b*a)*$\\
+\end{center}
+
+\textbf{Solution:} The FA for $L_1$ is constructed in Fig. 5.24.\\
+\begin{center}
+\section{picture}
+\includegraphics[width=8cm,height=4cm]{252-2.png}
+\end{center}
+
+The FA for $L_2$ is constructed in Fig. 5.25.\\
+\begin{center}
+\section{picture}
+\includegraphics[width=7cm,height=4cm]{252-2.png}
+\end{center}
+
+\end{document} 
