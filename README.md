@@ -34,10 +34,6 @@
 <div align="center"> 
   
 ## روز و ساعت ارائه دروس
-
-</div>
-
-<div dir="ltr">
   
 <table style="width:100%">
   <tr>
@@ -97,3 +93,5 @@
     <th>پنج شنبه</th>
   </tr>
 </table>
+
+</div>
